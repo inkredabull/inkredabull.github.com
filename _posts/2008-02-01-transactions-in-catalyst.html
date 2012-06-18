@@ -1,0 +1,37 @@
+---
+permalink: /transactions-in-catalyst/index.html
+layout: post
+title: Transactions in Catalyst
+published: true
+categories:
+- Web Development
+---
+<p>I searched around couldn't find anything definitive, but I put the following together based on what I could find.</p>
+
+<p>Before you start making changes to your model(s,) use a line like this:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre>$c-&gt;model('MyAppDB')-&gt;storage-&gt;txn_commit;</pre></div>
+</div>
+
+
+<p>... and add make sure this is in the "end" method of the module where you're doing the changes:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre>sub end : Private {
+     my ( $self, $c ) = @_;
+
+     if ( scalar @{ $c-&gt;error } ) {
+         $c-&gt;log-&gt;error(@{$c-&gt;error}[0]);
+         $c-&gt;stash-&gt;{errors}   = $c-&gt;error;
+         $c-&gt;stash-&gt;{template} = 'error.tt';
+         $c-&gt;forward('MyApp::View::TT');
+         $c-&gt;error(0);
+         $c-&gt;model('MyAppDB')-&gt;storage-&gt;txn_rollback;
+     } else {
+         $c-&gt;model('MyAppDB')-&gt;storage-&gt;txn_commit;
+     }
+
+     # wrap up...
+}</pre></div>
+</div>

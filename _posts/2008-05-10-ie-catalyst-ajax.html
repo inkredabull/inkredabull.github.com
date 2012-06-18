@@ -1,0 +1,32 @@
+---
+permalink: /ie-catalyst-ajax/index.html
+layout: post
+title: IE & Catalyst & AJAX
+published: true
+categories:
+- Web Development
+---
+<p>Alright, I've got this web service set up to serve back JSON when a link is clicked.  Working in Firefox 1.5+?  You bet.  IE 6? No.  I ping the web service with the browser and what do I get?</p>
+
+<code>Content-Type image/gif is not supported.</code>
+
+<p>Sure enough in Catalyst, I see the following in the logs:</p>
+
+<code>Could not find a serializer for an empty content type</code>
+
+<p>Am I to understand then that the Accept header of the XMLHttpRequest object in IE uses a default of "image/gif"?!?</p>
+
+<p>Sure enough, I made the following change in my REST controller and the JSON service worked:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre>__PACKAGE__-&gt;config(
+          serialize =&gt; {
+              'stash_key' =&gt; 'rest',
+              'map'       =&gt; {
+                  'text/xml'           =&gt; 'JSON',
+                  'text/x-json'        =&gt; 'JSON',
+                  'image/gif'          =&gt; 'JSON',
+              },
+         }
+);</pre></div>
+</div>

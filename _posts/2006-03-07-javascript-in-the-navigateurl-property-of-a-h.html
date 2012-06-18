@@ -1,0 +1,14 @@
+---
+permalink: /javascript-in-the-navigateurl-property-of-a-h/index.html
+layout: post
+title: JavaScript in the NavigateURL property of a hyperlink control
+published: true
+categories:
+- .NET
+- Web Development
+---
+<p>I was trying to figure out how to embed some JavaScript in a System.Web.UI.WebControls.HyperLink control when I came across <a href="http://www.experts-exchange.com/Programming/Programming_Languages/Dot_Net/ASP_DOT_NET/Q_21140530.html">this</a>.</p>
+
+<p>.....but the only problem was that I was passing parameters to the JavaScript function in question and the single quotes were getting all messed up.</p>
+
+<p>Finally, I just put a DIV tag with runat=server around a regular anchor tag (  ) and used logic in the code-behind to show/hide that.</p>

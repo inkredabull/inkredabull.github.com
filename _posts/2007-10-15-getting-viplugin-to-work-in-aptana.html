@@ -1,0 +1,40 @@
+---
+permalink: /getting-viplugin-to-work-in-aptana/index.html
+layout: post
+title: Getting viPlugin to work in Aptana
+published: true
+categories:
+- Web Development
+---
+<p>I've been checking out Eclipse and Aptana recently and I'm very impressed.  When I found the viPlugin for Eclipse and then had an instinct that it might work with Aptana (what with Aptana's core being Eclipse,) I decided to give it a shot.</p>
+
+<p>I looked around and saw a tip on getting viPlugin to work with RadRails.  Only thing is, I'm doing Javascript development on Windows XP and not using Rails.  I finally came across <a href="http://www.aptana.com/forums/viewtopic.php?p=11815">Aptana HTML Editor and ViPlugin in Eclipse 3.2</a> and decided to give it a try.  On the surface, the thread's advice is straightforward.  If you're not familiar with extracting files and rebuilding JAR files, it might not make sense. </p>
+
+	<p>I went through the steps and edited the plugin.xml file.  When I dropped the JAR back into the plugins folder and tried to open Aptana, I got this:</p>  
+	
+	<code>Unable to read workbench state.  Workbench UI layout will be reset.</code>
+
+	<p>... and then Aptana wouldn't even start.  Ugh.  I finally got it to work again by removing and reinstalling via the MSI (thereby losing the viPlugin so I needed to extract that again too.)  </p>
+	
+	<p>Since that didn't work, I tried messing with the file associations (under Windows &gt; Preferences &gt; General &gt; Editors &gt; File Associations.)  Then, I started getting this message:</p>
+	
+	<code>Error loading lexer file</code>
+	
+	<p>...telling me that I had a problem with the init for com.aptana.ide.editor.text.GenericTextEditor.  Ugh.  What to do?  I tried a couple of things to fix the problem...</p>
+	
+	<ol>
+		<li>Changing the default association for a text editor ( Windows &gt; Preferences &gt; Editors &gt; File Associations )</li>
+		<li>Reinstalling Aptana (making sure that the viPlugin JARs were not in the Aptana IDE Beta\plugins folder</li>
+		<li>Refreshing the configuration( Help &gt; Aptana Troubleshooting &gt; Clean Configuration )</li>
+	</ol>
+	
+	<p>...with no success.  I couldn't find much help out there except for <a href="http://aptana.org/trac/ticket/5165">this.</a>  Then, I thought, maybe it's a problem with Windows characters in my rebuild of the JAR file under XP.  I gave it a try on a RHEL 5 box and it worked seemlessly.  Ah.  The feeling of accomplishment.  </p>
+
+	<p>If you decide to get viPlugin for Aptana working, here are some things you should get before before diving in:</p>
+	<ol>
+		<li>a viPlugin license (order one <a href="http://satokar.com/viplugin/?q=node/5">here</a>.)</li>
+		<li>Knowledge of how to extract and rebuild JAR files</li>
+		<li>a non-Windows system</li>
+	</ol>
+	
+	<p>If you're really bent on having it work on Windows, you may follow the above thread:  "Aptana HTML Editor and ViPlugin in Eclipse 3.2."</p>

@@ -1,0 +1,31 @@
+---
+permalink: /ajax-for-dotnetnuke/index.html
+layout: post
+title: AJAX for DotNetNuke
+published: true
+categories:
+- .NET
+---
+Wasn't sure that it was possible but today I got it to work.&nbsp; I created an aspx page and in the Page_Load event, performed a query of the database, looped through the results, and wrote out a simple HTML dropdown list using Response.Write().&nbsp; Am already logged in so I guess the session is passed with XMLHTTPRequest.
+
+I noticed that when I try to use a server control instead of just writing out some HTML in the form of strings, it doesn't work.&nbsp; I get the following exception:
+
+"Control ... of type 'DropDownList' must be placed inside a form tag with runat=server."
+
+...so as a workaround, I'll just keep using*:
+
+Response.Write("  ")&nbsp;&nbsp;&nbsp;
+
+For Each result As Object In DBResults&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; Response.Write(" " &amp; result.key &amp; " ")&nbsp;&nbsp;
+Next&nbsp;&nbsp;
+
+Response.Write(" ")
+
+Response.Flush()
+
+&nbsp;
+
+&nbsp;
+
+* Requires tweaking to&nbsp;transform into useful&nbsp;VB .NET code.&nbsp; If you know how to convert code into&nbsp;intelliglble text for WordPress, let me know...&nbsp;

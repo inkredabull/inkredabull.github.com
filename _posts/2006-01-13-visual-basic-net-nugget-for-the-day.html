@@ -1,0 +1,16 @@
+---
+permalink: /visual-basic-net-nugget-for-the-day/index.html
+layout: post
+title: Visual Basic .NET Nugget for the Day
+published: true
+categories:
+- .NET
+---
+So, there I was trying to figure out how to instantiate a class when all I have is the name of the class as held in a string variable.&nbsp; Thanks to <a href="http://www.dotnet247.com/247reference/msgs/58/293439.aspx">this</a>, it's easy:
+
+Dim objInstance As Object
+
+Dim reportType As Type = Type.GetType(sReport)
+
+objInstance = Activator.CreateInstance(Nothing, objType)
+

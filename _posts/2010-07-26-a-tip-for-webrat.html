@@ -1,0 +1,52 @@
+---
+permalink: /a-tip-for-webrat/index.html
+layout: post
+title: A Tip for Webrat
+published: true
+categories:
+- choose
+- Rails
+- Web Development
+- webrat
+---
+I had my first experiences with Webrat last Thursday and I came across this error:
+
+<code>
+NoMethodError: You have a nil object when you didn't expect it! 
+The error occurred while evaluating nil.fields
+    (eval):2:in `choose'
+</code>
+
+Not being able to decipher that, I turned to the web and found <a href="http://erikonrails.snowedin.net/?p=133" target="_new">this helpful link</a> which didn't completely solve my problem but did point me in the right direction: check the markup.  
+
+Looking at what I had:
+
+<div class="CodeRay">
+  <div class="code"><pre>&lt;tr&gt;
+&lt;td&gt;
+  &lt;input type=&quot;radio&quot; value=&quot;1&quot; name=&quot;my_radio_btn&quot; id=&quot;my_radio_btn&quot;&gt;
+&lt;/td&gt;
+&lt;td id=&quot;l&quot;&gt;
+  &lt;label for=&quot;my_radio_btn&quot;&gt;My Radio Button&lt;/label&gt;
+&lt;/td&gt;
+&lt;/tr&gt;</pre></div>
+</div>
+
+
+...there wasn't a &lt;form&gt; anywhere in sight.  Once I fixed the markup to be:
+
+<div class="CodeRay">
+  <div class="code"><pre>&lt;tr&gt;
+&lt;td&gt;
+  &lt;form id=&quot;better_markup&quot;&gt;
+      &lt;input type=&quot;radio&quot; value=&quot;1&quot; name=&quot;my_radio_btn&quot; id=&quot;my_radio_btn&quot;&gt;
+  &lt;/form&gt;
+&lt;/td&gt;
+&lt;td id=&quot;l&quot;&gt;
+  &lt;label for=&quot;my_radio_btn&quot;&gt;My Radio Button&lt;/label&gt;
+&lt;/td&gt;
+&lt;/tr&gt;</pre></div>
+</div>
+
+
+... Webrat worked like a charm.

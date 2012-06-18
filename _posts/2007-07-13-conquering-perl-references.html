@@ -1,0 +1,25 @@
+---
+permalink: /conquering-perl-references/index.html
+layout: post
+title: Conquering Perl References
+published: true
+categories:
+- Web Development
+---
+<p>What a headache Perl de-referencing can be, which I had forgotten ('cause it's been a while since I've worked with such nested data structures.)</p>
+
+<p>I had this variable:</p>
+<div class="CodeRay">
+  <div class="code"><pre>$obj-&gt;{'children'}</pre></div>
+</div>
+
+
+<p>...giving me some big data structure of a hierarchy of the object's children.  When I dumped the variable to STDERR, I could tell that there was an 'id' associative index in there somewhere.</p>
+
+<p>After a great deal of trial-and-error, I finally came up with this in order to dereference the referenced arrays in $obj-&gt;{'children'} and then get the "id" value of the referenced hash.  Say that fives times fast.</p>
+
+<div class="CodeRay">
+  <div class="code"><pre>foreach my $child ($obj-&gt;{'children'}) {
+           print STDERR @$child[1]-&gt;{'id'}.&quot;\n&quot;;
+   }</pre></div>
+</div>

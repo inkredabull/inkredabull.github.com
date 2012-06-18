@@ -1,0 +1,10 @@
+---
+permalink: /soapaction/index.html
+layout: post
+title: SOAPAction?
+published: true
+categories:
+- .NET
+- Web Development
+---
+Can anyone really tell me what the SOAPAction header means or is good for?&nbsp;&nbsp; I was getting a faultstring saying "Unable to hanlde request without a valid action parameter" and didn't know what to make of it.&nbsp; I dug around (read:&nbsp; Googled for it) and found an RFC or two (and you know I love reading those...) but couldn't find a solid answer.&nbsp; My solution?&nbsp; I just thought to look in the WSDL and low and behold, there was a SOAPAction key-value pair which I wound up using in my AJAX call and it worked.&nbsp; Go figure.

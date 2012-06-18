@@ -1,0 +1,12 @@
+---
+permalink: /-and-back-to-formbuilder/index.html
+layout: post
+title: ! '... and back to FormBuilder'
+published: true
+categories:
+- Catalyst
+- Web Development
+---
+<p>After reworking my code to use HTML::FormFu instead of the FormBuilder plugin (which didn't wind up taking that long, actually,) I could not find a way for HTML::FormFu to do client-side validation. My paradigm of GETting or POSTing a form and then redirecting to serve back JSON was completely ruined.</p>
+
+<p>In the end, I found a work-around to do additional server-side validation using FormBuilder.  The built-in validation patterns of FormBuilder don't serve my needs (I have to take some input, do a request against another web-service, and go from there.) </p>

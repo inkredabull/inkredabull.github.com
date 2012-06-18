@@ -1,0 +1,18 @@
+---
+permalink: /automating-web-app-testing/index.html
+layout: post
+title: Automating Web App Testing
+published: true
+categories:
+- Web Development
+---
+<p>In my quest to improve the overall quality of the web app I'm working on as well as making it more robust, I've been looking into a couple of testing frameworks.</p>
+
+<p>By juxtaposing Chickenfoot and Test::WWW::Mechanize, am I not comparing apples and oranges?  Having one testing harness for web apps would be fantastic.  With legacy Perl code churning out dynamic HTML running along side new AJAX-producing code which is manipulating the DOM in the browser, it's a matter of understanding which hammer with which nail.</p>
+
+<p>I spent part of yesterday giving Test::WWW::Mechanize a whirl.  It has no support for querying a tag based on an ID but you can always just use a regex to scan the content of a HTTP response to do the same kind of thing which makes testing a web service fairly easy.</p>
+
+<p>Now, I just have to see mimicing user interaction like in Chickenfoot.</p> 
+
+<p><a href="http://groups.csail.mit.edu/uid/chickenfoot/">Chickenfoot</a></p>
+<p><a href="http://search.cpan.org/~petdance/Test-WWW-Mechanize-1.14/Mechanize.pm'">Test::WWW::Mechanize</a></p>

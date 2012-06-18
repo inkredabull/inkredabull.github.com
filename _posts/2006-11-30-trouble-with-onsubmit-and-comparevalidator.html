@@ -1,0 +1,45 @@
+---
+permalink: /trouble-with-onsubmit-and-comparevalidator/index.html
+layout: post
+title: Trouble with OnSubmit() and CompareValidator
+published: true
+categories:
+- .NET
+- Web Development
+---
+To do some validation on two dates (an end date and a start date where the end date shouldn't be earlier than the start date,) I tried making use of the CompareValidator.  After much frustration, I finally got rid of it and coded the JavaScript for the validation myself.
+
+I was making use of a CompareValidator control in a webform along with a hyperlink-as-submit-button ala <a href="http://www.javascript-coder.com/javascript-form/javascript-form-submit.phtml">this tutorial.</a>  When I tested the hyperlink, I got this:
+
+<div class="CodeRay">
+  <div class="code"><pre>'event' is null or not an object</pre></div>
+</div>
+
+
+When I tried this...
+
+<div class="CodeRay">
+  <div class="code"><pre>alert(document.theForm.onsubmit);</pre></div>
+</div>
+
+
+I got this in the popup...
+
+<div class="CodeRay">
+  <div class="code"><pre>function anonymous() {
+          if(!ValdiatorOnSubmit()) 
+               return false;
+  }</pre></div>
+</div>
+
+
+...which seemed to indicate that the onsubmit event is hooked into the .NET web validation javascript via a pointer somewhere.  What to do?  How about including an invisbile submit button to force the form submission (thank you <a href="http://www.w3schools.com/htmldom/dom_obj_submit.asp">W3Schools</a>!) ala:
+
+<div class="CodeRay">
+  <div class="code"><pre>document.getElementById('InivisibleSubmitButton').click();</pre></div>
+</div>
+  
+
+The problem I ran into was that I couldn't test whether the technique returned true (validation OK) or false (try again) which was necessary before submitting the values to commit to the database.  
+
+In the end, I wound up including my own JavaScript to validate the dates.  No post backs, just simple validation client-side.

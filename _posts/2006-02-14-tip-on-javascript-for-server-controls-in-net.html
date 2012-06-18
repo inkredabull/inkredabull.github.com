@@ -1,0 +1,13 @@
+---
+permalink: /tip-on-javascript-for-server-controls-in-net/index.html
+layout: post
+title: Tip on JavaScript for Server Controls in .NET
+published: true
+categories:
+- .NET
+---
+I was having a rough time trying to figure out how to use JavaScript on a particular control.&nbsp; I wanted to use getElementById on a server control but of course, ASP .NET appends a bunch of stuff to the ID of anything you declare, so what was I to do?&nbsp; I had hopes that I could go through all the elements of the DOM and one-by-one, check their ID values against the string value I was looking for.&nbsp; Finally, I gave up when I found this tip:
+
+document.getElementById('  ').value;
+
+Care of <a href="http://www.devx.com/tips/Tip/28332">Santhi</a>

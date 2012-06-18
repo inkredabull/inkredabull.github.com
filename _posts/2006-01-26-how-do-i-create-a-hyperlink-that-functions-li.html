@@ -1,0 +1,24 @@
+---
+permalink: /how-do-i-create-a-hyperlink-that-functions-li/index.html
+layout: post
+title: How do I create a hyperlink that functions like a submit button?
+published: true
+categories:
+- .NET
+---
+Add some JavaScript to the href attribute of the anchor tag:
+
+
+
+...and then add the following to the HEAD tag of your HTML:
+
+function submitFunction()
+
+{
+
+document.forms[0].action = 'someURL.html';
+
+document.forms[0].submit();
+
+}
+

@@ -1,0 +1,19 @@
+---
+permalink: /javascript-and-net/index.html
+layout: post
+title: JavaScript and .NET
+published: true
+categories:
+- .NET
+---
+How do I access a server control's ID in JavaScript when the element to be validated is on a different control than where the JavaScript is?
+
+Situation:
+I have a library of JavaScript that is being used by a number of ascx files. In one of the general JavaScript functions, I am doing some validation checks on regular chunks of HTML (i.e. no "runat=server".) Now, I've added a runat=server control and want to use the validating function on it but I get an exception because I've put...
+
+
+
+....in the generalized JavaScript library which of course doesn't have access to that particular control. How should I refactor my code?
+
+Solution:
+I've added a global array variable in the JavaScript library and now make reference to it in the validating function. The variable is set in the page load event of each control making it possible to dynamically list all of the HTML elements that are to be validated when the function is called.

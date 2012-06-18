@@ -1,0 +1,26 @@
+---
+permalink: /4444-conflict-between-kerberos-and-selenium/index.html
+layout: post
+title: 4444 Conflict between Kerberos and Selenium?
+published: true
+categories:
+- Selenium
+- Web Development
+---
+<p>Don't have time to really research this any further, but I think I found out why I couldn't start Selenium today using my normal command line invocation.  I was getting this when I tried to start it:</p>
+
+<code>java.net.BindException: Address already in use</code>
+
+<p>Hmmm... hadn't started it before sitting down for work.... so.... what could be the issue?  How did port 4444 get bound already?  A little...</p>
+
+<code> "nmap locahost" </code>
+
+<p>...yields:</p>
+
+<code>
+PORT     STATE SERVICE
+4444/tcp open  krb524</code>
+
+<p>krb524?!? I don't remember firing that up.  What is it?  Well, if you do a search for "krb524 4444," you'll quickly see that "krb524" has to do with Kerberos and it seems that Kerberos is using port 4444.  </p>
+
+<p>I'm on a Cisco VPN.  Does the Cisco VPN use Kerberos?  I don't know, but it's plausible enough for me to chalk it up to that and pass a new port (something clever like -p 4445) to the Selenium JAR and whoomp - as they say - there it is.</p>

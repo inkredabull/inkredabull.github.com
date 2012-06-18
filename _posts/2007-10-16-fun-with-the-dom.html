@@ -1,0 +1,46 @@
+---
+permalink: /fun-with-the-dom/index.html
+layout: post
+title: Fun with the DOM
+published: true
+categories:
+- Web Development
+---
+<p>Everything was going smoothly with Firefox.  I was using innerHTML and the new arguments that I shoved into the DOM were getting posted to the server, no problem.  Then, I switched over to IE to test and discovered that the newly created arguments weren't showing up. Figuring it was a problem with IE, I inspected the DOM (by inserting a "return false;" statement in the form validator function. </p>
+
+<p>Sure enough, the newly-created arguments were not getting appended to the DOM and therefore not posted to the server.  I tried shoving the new arguments into the DOM but wound up getting this message:</p>
+
+<code>Node cannot be inserted at the specified point in the hierarchy</code>
+
+<p>Here's what I was trying to do (intentional space at beginning of input to prevent WordPress rendering as HTML):</p>
+
+<div class="CodeRay">
+  <div class="code"><pre>newCell = '';
+        
+        var row = document.getElementById('my_table').getElementsByTagName('tr').childNodes[2];
+        
+        row.childNodes[i].innerHTML = newCell;</pre></div>
+</div>
+
+
+<p>Figuring that the string-based method of creating an element was getting me anywhere, I tried to dynamically create and append the node:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre>cellContent = row.childNodes[i].innerHTML;
+
+        var inputNode = document.createElement(&quot;input&quot;); 
+
+        inputNode.setAttribute('type', 'text');
+
+        inputNode.setAttribute('id', 'my_new_input');
+        inputNode.setAttribute('name', 'my_new_input');
+
+        inputNode.setAttribute('value', cellContent);
+        inputNode.setAttribute('class', row.childNodes[i].className);        
+                                
+        row.childNodes[i].replaceChild(inputNode, row.childNodes[i].firstChild);</pre></div>
+</div>
+
+
+
+<p> (If name isn't being set properly for you, you may want to check out <a href="http://www.inmyexperience.com/archives/000428.shtml">this explanation</a> about unexpected name property/attribute behavior in IE.)</p>
