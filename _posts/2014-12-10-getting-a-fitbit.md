@@ -24,7 +24,7 @@ Checking out the [Charge HR](http://www.fitbit.com/chargehr), I'm reminded of a 
 very similar: my Timex Ironman Triathlon heart-rate monitor!  Wondering where it was, I dug around in my belongings and sure
 enough, I found it (albeit dusty):
 
-![Timex Ironman Triathlon](./images/photos/timex_ironman.jpg)
+![Timex Ironman Triathlon](/images/photos/timex_ironman.jpg)
 
 Wow; not sure how long ago I got that. I think I was living in
 Vienna, so it's at least eight years old. I could have sworn I got it
