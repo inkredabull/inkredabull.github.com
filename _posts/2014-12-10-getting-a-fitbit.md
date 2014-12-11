@@ -1,9 +1,16 @@
+---
+permalink: /getting-a-fitbit/index.html
+layout: post
+title: Getting a Fitbit
+published: true 
+categories: [quantifiedself fitbit]
+---
 ## Getting a Fitbit
 
 Back in 2006, my wife came up with an idea for her Master's thesis
 around the concept of a [gamified
 pedometer](http://dl.acm.org/citation.cfm?id=1125797) and "tackled the
-challenge of motivating people [...] to exercise more [using] a
+challenge of motivating people \[...\] to exercise more \[using\] a
 device which encourages physical activity of its users in an
 entertaining way and reinforces positive exercise habits." Here I am in 2014; considering getting a Fitbit (a little pre-Christmas gift to myself?) 
 
