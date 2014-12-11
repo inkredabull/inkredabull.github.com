@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="en-us" http-equiv="Content-Language" />
+    <meta content="The online writing of Anthony Bull" name="description" />
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <title>Anthony Bull &mdash; JavaScript and .NET</title>
+  </head>
+  <body>
+    <header>
+      <h1 id="title">
+        The Bull Og
+      </h1>
+      <h2 id="subtitle">
+        Onine since 1994. Offline since 1976.
+      </h2>
+      <h3>
+        See also the <a href="/archive.html" title="Archive">archive</a>
+      </h3>
+    </header>
+    <div id="wrapper">
+      <h2 id="intro">An individual post follows.</h2>
+<article class="post">
+How do I access a server control's ID in JavaScript when the element to be validated is on a different control than where the JavaScript is?
+
+Situation:
+I have a library of JavaScript that is being used by a number of ascx files. In one of the general JavaScript functions, I am doing some validation checks on regular chunks of HTML (i.e. no "runat=server".) Now, I've added a runat=server control and want to use the validating function on it but I get an exception because I've put...
+
+
+
+....in the generalized JavaScript library which of course doesn't have access to that particular control. How should I refactor my code?
+
+Solution:
+I've added a global array variable in the JavaScript library and now make reference to it in the validating function. The variable is set in the page load event of each control making it possible to dynamically list all of the HTML elements that are to be validated when the function is called.
+
+<time class="signoff" datetime="2006-02-28">
+  &mdash;Feb 28, 2006
+</time>
+</article>
+
+      <footer id="footer">
+        <a href="/" title="Home">Home</a> &bull;
+        <a href="/archive.html" title="Archived writing">Archive</a>
+      </footer>
+    </div>
+  </body>
+</html>

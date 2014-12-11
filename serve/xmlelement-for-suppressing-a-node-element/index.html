@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="en-us" http-equiv="Content-Language" />
+    <meta content="The online writing of Anthony Bull" name="description" />
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <title>Anthony Bull &mdash; XMLElement for Suppressing a Node Element</title>
+  </head>
+  <body>
+    <header>
+      <h1 id="title">
+        The Bull Og
+      </h1>
+      <h2 id="subtitle">
+        Onine since 1994. Offline since 1976.
+      </h2>
+      <h3>
+        See also the <a href="/archive.html" title="Archive">archive</a>
+      </h3>
+    </header>
+    <div id="wrapper">
+      <h2 id="intro">An individual post follows.</h2>
+<article class="post">
+As I was recently serializing objects into XML, I had the need to suppress a few of the elements in the ouput.  After looking around, I finally found "XMLElement" and some examples which I reworked in VB .NET.
+
+To start with, I have a base class with a method called GenerateXML which each inheriting class overloads. In the method, I use an XmlSerializer to generate the XML and everything was working quite well, until the day before yesterday.
+
+The main problem was in a particular subclass that has a property with type DateTime. As all of you know (as do I now,) anytime you try to serialize such an object, you get this in the XML for the property:
+
+<div class="CodeRay">
+  <div class="code"><pre>&lt;MyDateProperty&gt;0001-01-01T00:00:00.0000000+01:00&lt;/MyDateProperty&gt;</pre></div>
+</div>
+
+
+When SQL Server tried to update the appropriate table column with the value, I got:
+<div class="CodeRay">
+  <div class="code"><pre>The conversion of a char data type to a datetime data type resulted 
+in an out-of-range datetime value.
+The statement has been terminated.</pre></div>
+</div>
+
+
+I thought the DateTime datatype would be consistently nullable between the .NET framework and SQL Server.  Guess I was wrong.  
+
+The trick became to figure out how to supress the MyDateProperty element in the serialized XML.  What to do:
+<ul>
+  <li>Develop a stylesheet to transform the xml before passing it to the stored procedure?</li>
+  <li>Create a new property with type string in the class and then use hidden inputs on the web form to set and get values?</li>
+  <li>Set the data type of the property to string and then marshal the string into a date and vice-verse where necessary?</li>
+</ul>
+
+So many ways to skin a cat.  Then I started thinking "there has to be a way to control serialization of the class in the XMLSerializer."  I found the XMLElement attribute along with a really good thread applicable to my case <a href="http://www.thescripts.com/forum/thread177609.html">here.</a>  There were only two differences in my case:
+<ul>
+ <li>I'm using VB .NET</li>
+ <li>I needed to figure a way out of how to do it design-time in the class and not when the class gets serialized by the XMLSerializer</li>
+</ul> 
+
+After a good deal of tweaking, I finally got the xxxxSpecified idea (see <a href="http://www.thescripts.com/forum/thread177609.html">above</a>) to work inside my subclass.  Here's the (VB .NET):
+
+<div class="CodeRay">
+  <div class="code"><pre>&lt;XmlElement(ElementName:=&quot;MyDateProperty&quot;, DataType:=&quot;date&quot;)&gt; _
+                                  Property MyDateProperty() As DateTime 
+               Get 
+                    Return _MyDateProperty 
+               End Get 
+               Set(ByVal Value As DateTime) 
+                     _MyDateProperty = Value 
+               End Set 
+         End Property  
+&lt;XmlIgnore()&gt; Property MyDatePropertySpecified() As Boolean 
+               Get 
+                     Return _ShowIgnoredElement 
+               End Get 
+               Set(ByVal Value As Boolean) 
+                     _ShowIgnoredElement = Value 
+               End Set 
+         End Property</pre></div>
+</div>
+
+
+All that's left is to set the MyDatePropertySpecified property in a constructor of the subclass.  Here's an example:
+
+<div class="CodeRay">
+  <div class="code"><pre>' Author:  Anthony Jay Bull
+' Date:  2006-11-21
+' In:  All the params off of the query string as provided 
+'       by a NameValueCollection object
+' Notes:  The MyDateWebControl is providing the date in this case
+'       in the format of &quot;YYYY-DD-MM&quot;
+
+Public Sub New(ByVal formParams As System.Collections.Specialized.NameValueCollection)
+
+           Dim arrPickedDate() As String
+           arrPickedDate =_
+                      HttpUtility.HtmlEncode(formParams.Item(&quot;MyDateWebControl&quot;)).Split(&quot;-&quot;)
+           If arrPickedDate.Length = 3 Then
+                      Me.MyDateProperty = New DateTime(arrPickedDate(0), _ 
+                                             arrPickedDate(2), arrPickedDate(1))
+                      Me.MyDatePropertySpecified = True
+           Else
+                      Me.MyDatePropertySpecified = False
+           End If
+End Sub</pre></div>
+</div>
+
+
+Now, instead of this:
+<div class="CodeRay">
+  <div class="code"><pre>&lt;SomeRootElement&gt;
+     &lt;SomeSiblingOfMyDate&gt;Some string value&lt;/SomeSiblingOfMyDate&gt;
+     &lt;MyDateProperty&gt;0001-01-01T00:00:00.0000000+01:00&lt;/MyDateProperty&gt;
+&lt;/SomeRootElement&gt;</pre></div>
+</div>
+
+
+...or even this:
+<div class="CodeRay">
+  <div class="code"><pre>&lt;SomeRootElement&gt;
+     &lt;SomeSiblingOfMyDate&gt;Some string value&lt;/SomeSiblingOfMyDate&gt;
+     &lt;MyDateProperty/&gt;
+&lt;/SomeRootElement&gt;</pre></div>
+</div>
+
+
+I now get this...
+<div class="CodeRay">
+  <div class="code"><pre>&lt;SomeRootElement&gt;
+     &lt;SomeSiblingOfMyDate&gt;Some string value&lt;/SomeSiblingOfMyDate&gt;
+&lt;/SomeRootElement&gt;</pre></div>
+</div>
+
+
+<time class="signoff" datetime="2006-11-27">
+  &mdash;Nov 27, 2006
+</time>
+</article>
+
+      <footer id="footer">
+        <a href="/" title="Home">Home</a> &bull;
+        <a href="/archive.html" title="Archived writing">Archive</a>
+      </footer>
+    </div>
+  </body>
+</html>

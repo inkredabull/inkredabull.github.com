@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="en-us" http-equiv="Content-Language" />
+    <meta content="The online writing of Anthony Bull" name="description" />
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <title>Anthony Bull &mdash; Acceptance Testing Primer for Emberjs</title>
+  </head>
+  <body>
+    <header>
+      <h1 id="title">
+        The Bull Og
+      </h1>
+      <h2 id="subtitle">
+        Onine since 1994. Offline since 1976.
+      </h2>
+      <h3>
+        See also the <a href="/archive.html" title="Archive">archive</a>
+      </h3>
+    </header>
+    <div id="wrapper">
+      <h2 id="intro">An individual post follows.</h2>
+<article class="post">
+<p><strong>tl;dr : Capybara with phantomjs is the fastest solution around</strong></p>
+
+<p>Years ago, I loved <a href='http://seleniumhq.org/'>Selenium</a> for everything it made possible, particularly for the <a href='https://addons.mozilla.org/en-US/firefox/addon/selenium-ide/'>Firefox plugin</a> that made it so easy to script-record a user acceptance test and dump it for automation.</p>
+
+<p>Over the years, I have done my fair share of futzing around with Selenium, and when I took a look at <a href='https://github.com/FrozenCanuck/Lebowski'>Lebowski</a> a few months ago, I thought I had found a silver bullet. It&#8217;s really a clean solution for managing everything around acceptance testing, that is, if you&#8217;re going to use Selenium.</p>
+
+<p>Today, my solution of choice is <a href='https://github.com/jnicklas/capybara'>Capybara</a> with <a href='http://phantomjs.org/'>PhantomJS</a>/<a href='https://github.com/jonleighton/poltergeist'>poltergeist</a></p>
+
+<p>So far, Capybara&#8217;s DSL is so clean and robust for programmatically defining any user action I&#8217;ve come up with. I don&#8217;t have any benchmarks to share at this time for vanilla-Capybara tests vs. Capybara w/headless JS (poltergeist) but suffice it to say, I spend noticably less time at the command line.</p>
+
+<p>More to come on how to (acceptance) test your Ember.js apps using Capybara/poltergeist.</p>
+<time class="signoff" datetime="2012-10-15">
+  &mdash;Oct 15, 2012
+</time>
+</article>
+
+      <footer id="footer">
+        <a href="/" title="Home">Home</a> &bull;
+        <a href="/archive.html" title="Archived writing">Archive</a>
+      </footer>
+    </div>
+  </body>
+</html>

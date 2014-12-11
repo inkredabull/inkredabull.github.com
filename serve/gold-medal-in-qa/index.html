@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="en-us" http-equiv="Content-Language" />
+    <meta content="The online writing of Anthony Bull" name="description" />
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <title>Anthony Bull &mdash; Gold Medal in QA</title>
+  </head>
+  <body>
+    <header>
+      <h1 id="title">
+        The Bull Og
+      </h1>
+      <h2 id="subtitle">
+        Onine since 1994. Offline since 1976.
+      </h2>
+      <h3>
+        See also the <a href="/archive.html" title="Archive">archive</a>
+      </h3>
+    </header>
+    <div id="wrapper">
+      <h2 id="intro">An individual post follows.</h2>
+<article class="post">
+<p>Today, after a week battling Perl, Java, Selenium, crontabs, virtual roots and vm's, I finally have a fairly decent working solution for automated regression testing.</p>
+
+<h3>Where did it start?</h3>
+
+<p>I was handed a legacy web app in Perl which came with *NO* testing whatsoever and asked to add some new features.  How were we supposed to know if a new feature broke any old ones?  We'd hear it from users.</p>
+
+<p>That wasn't a good situation so I set about to bolt on some regression testing.  It took longer than anticipated but it's good for the overall health of the app so I can rationalize the time spent.</p>
+
+<p>I had previously used <a href="http://selenium-rc.openqa.org/">Selenium RC</a> for a Catalyst project so I knew the power of Selenium and decided to go with it as part of a toolkit for my test suite.  
+
+</p><h3>Where has it ended?</h3>
+
+<p>In the last week, I've been able to...</p>
+
+<ul>
+<li>Brush up on my Perl and 'NIX IPC skills only to wind up wrapping the Selenium RC (Java) server with some Perl for starting and stopping it based on a PID file</li>
+<li>Make use of the <a href="http://selenium-rc.openqa.org/experimental.html">chrome experimental browser</a> to get around cross-site permission issues (<code>Permission denied to get property Location.href</code>)</li>
+<li>Configure a crontab to autostart and run correctly in a virtual root, making it possible to automate the testing process and send the output of <code>prove</code> statements to myself on a periodic basis.</li>
+</ul>
+
+<p>Does Michael Phelps feel this good?</p>
+
+<time class="signoff" datetime="2008-08-23">
+  &mdash;Aug 23, 2008
+</time>
+</article>
+
+      <footer id="footer">
+        <a href="/" title="Home">Home</a> &bull;
+        <a href="/archive.html" title="Archived writing">Archive</a>
+      </footer>
+    </div>
+  </body>
+</html>

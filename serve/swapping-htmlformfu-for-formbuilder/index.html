@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="en-us" http-equiv="Content-Language" />
+    <meta content="The online writing of Anthony Bull" name="description" />
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <title>Anthony Bull &mdash; Swapping HTML::FormFu for FormBuilder</title>
+  </head>
+  <body>
+    <header>
+      <h1 id="title">
+        The Bull Og
+      </h1>
+      <h2 id="subtitle">
+        Onine since 1994. Offline since 1976.
+      </h2>
+      <h3>
+        See also the <a href="/archive.html" title="Archive">archive</a>
+      </h3>
+    </header>
+    <div id="wrapper">
+      <h2 id="intro">An individual post follows.</h2>
+<article class="post">
+<p>In these last two weeks, I've made a lot of progress in migrating a monolithic form into AJAXian formlets.  I discovered FormBuilder and was ecstatic about the client- and server-side validation and that was the crux of the transition.</p>
+
+<p>It was going smoothly; too smoothly as a matter of fact.  I had a single controller to handle requests like 'forms/FORM_ID' and serve up the proper form (based on FORM_ID,) the controller was handling POST-backs and doing updates (based on FORM_ID,) and I was returning JSON to indicate success or failure.  Everything was going great until I realized that I couldn't get a hook into the server-side validation which I need to be more robust than just some pattern checking.</p>
+
+<p>I had gone too far down the path of dynamic form generation to turn back and I was about to tear-up when I remembered having taking a look at HTML::FormFu a while back.  Looking into <a href="http://search.cpan.org/~cfranks/Catalyst-Controller-HTML-FormFu-0.03004/lib/Catalyst/Controller/HTML/FormFu.pm#config_file_path">the documentation,</a> I found a potential solution to my problem of custom server-side validation.  I only dreaded having to swap out FormBuilder for HTML::FormFu.</p>
+
+<p>I'm glad to report that two hours into the endeavor, the conversion is going magnificently.  I'm refactoring the ".fb" files as ".yml" files but aside from that, there's not much change to my controller for handling forms.  There are a couple of syntactical differences here and there but for the most part, it's painless.</p>
+
+<time class="signoff" datetime="2008-11-20">
+  &mdash;Nov 20, 2008
+</time>
+</article>
+
+      <footer id="footer">
+        <a href="/" title="Home">Home</a> &bull;
+        <a href="/archive.html" title="Archived writing">Archive</a>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="en-us" http-equiv="Content-Language" />
+    <meta content="The online writing of Anthony Bull" name="description" />
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <title>Anthony Bull &mdash; Automating Web App Testing</title>
+  </head>
+  <body>
+    <header>
+      <h1 id="title">
+        The Bull Og
+      </h1>
+      <h2 id="subtitle">
+        Onine since 1994. Offline since 1976.
+      </h2>
+      <h3>
+        See also the <a href="/archive.html" title="Archive">archive</a>
+      </h3>
+    </header>
+    <div id="wrapper">
+      <h2 id="intro">An individual post follows.</h2>
+<article class="post">
+<p>In my quest to improve the overall quality of the web app I'm working on as well as making it more robust, I've been looking into a couple of testing frameworks.</p>
+
+<p>By juxtaposing Chickenfoot and Test::WWW::Mechanize, am I not comparing apples and oranges?  Having one testing harness for web apps would be fantastic.  With legacy Perl code churning out dynamic HTML running along side new AJAX-producing code which is manipulating the DOM in the browser, it's a matter of understanding which hammer with which nail.</p>
+
+<p>I spent part of yesterday giving Test::WWW::Mechanize a whirl.  It has no support for querying a tag based on an ID but you can always just use a regex to scan the content of a HTTP response to do the same kind of thing which makes testing a web service fairly easy.</p>
+
+<p>Now, I just have to see mimicing user interaction like in Chickenfoot.</p> 
+
+<p><a href="http://groups.csail.mit.edu/uid/chickenfoot/">Chickenfoot</a></p>
+<p><a href="http://search.cpan.org/~petdance/Test-WWW-Mechanize-1.14/Mechanize.pm'">Test::WWW::Mechanize</a></p>
+
+<time class="signoff" datetime="2007-08-30">
+  &mdash;Aug 30, 2007
+</time>
+</article>
+
+      <footer id="footer">
+        <a href="/" title="Home">Home</a> &bull;
+        <a href="/archive.html" title="Archived writing">Archive</a>
+      </footer>
+    </div>
+  </body>
+</html>

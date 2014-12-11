@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="en-us" http-equiv="Content-Language" />
+    <meta content="The online writing of Anthony Bull" name="description" />
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <title>Anthony Bull &mdash; 4444 Conflict between Kerberos and Selenium?</title>
+  </head>
+  <body>
+    <header>
+      <h1 id="title">
+        The Bull Og
+      </h1>
+      <h2 id="subtitle">
+        Onine since 1994. Offline since 1976.
+      </h2>
+      <h3>
+        See also the <a href="/archive.html" title="Archive">archive</a>
+      </h3>
+    </header>
+    <div id="wrapper">
+      <h2 id="intro">An individual post follows.</h2>
+<article class="post">
+<p>Don't have time to really research this any further, but I think I found out why I couldn't start Selenium today using my normal command line invocation.  I was getting this when I tried to start it:</p>
+
+<code>java.net.BindException: Address already in use</code>
+
+<p>Hmmm... hadn't started it before sitting down for work.... so.... what could be the issue?  How did port 4444 get bound already?  A little...</p>
+
+<code> "nmap locahost" </code>
+
+<p>...yields:</p>
+
+<code>
+PORT     STATE SERVICE
+4444/tcp open  krb524</code>
+
+<p>krb524?!? I don't remember firing that up.  What is it?  Well, if you do a search for "krb524 4444," you'll quickly see that "krb524" has to do with Kerberos and it seems that Kerberos is using port 4444.  </p>
+
+<p>I'm on a Cisco VPN.  Does the Cisco VPN use Kerberos?  I don't know, but it's plausible enough for me to chalk it up to that and pass a new port (something clever like -p 4445) to the Selenium JAR and whoomp - as they say - there it is.</p>
+
+<time class="signoff" datetime="2009-02-25">
+  &mdash;Feb 25, 2009
+</time>
+</article>
+
+      <footer id="footer">
+        <a href="/" title="Home">Home</a> &bull;
+        <a href="/archive.html" title="Archived writing">Archive</a>
+      </footer>
+    </div>
+  </body>
+</html>

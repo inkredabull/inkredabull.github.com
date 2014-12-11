@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="en-us" http-equiv="Content-Language" />
+    <meta content="The online writing of Anthony Bull" name="description" />
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <title>Anthony Bull &mdash; When I try to use an stylesheet extension, why do I get HRESULT: 0x80131418 ?</title>
+  </head>
+  <body>
+    <header>
+      <h1 id="title">
+        The Bull Og
+      </h1>
+      <h2 id="subtitle">
+        Onine since 1994. Offline since 1976.
+      </h2>
+      <h3>
+        See also the <a href="/archive.html" title="Archive">archive</a>
+      </h3>
+    </header>
+    <div id="wrapper">
+      <h2 id="intro">An individual post follows.</h2>
+<article class="post">
+I was trying to make use of Jeni Tennison's extension for evaluating a string query (found <a href="http://www.xmleverywhere.com/tips/xslt.htm">here</a> among other places) when I kept on getting "HRESULT: 0x80131418." Even when I stepped through the code I couldn't find any more information about the exception so I Googled it to see what I could find.
+
+Long story short, it appears to be a security policy exception. Ah... that might make sense. We're compiling the stylesheet script at run time so the managed code environment looks like it's doing its job by enforcing whatever security policy's in place. Ok, what's the workaround?
+
+I tool a look at the most appropriate <a href="http://msdn2.microsoft.com/en-us/library/wxaw5z5e.aspx">MS documentation</a> I could find.
+
+It says:
+
+"Support for embedded scripts is an optional XSLT setting on the XslCompiledTransform class."
+
+"Script support is disabled by default"
+
+"XSLT scripting should be enabled only if [...] you are working in a fully trusted environment."
+
+Ah, clues... "XslCompiledTransform" is only defined in .NET 2.0. The transformation is happening within a .NET 1.1 command-line application I'm running on my machine. Hmmm... To solve the problem, I just changed the local security settings with caspol.exe and the stylesheet script compiles and runs.
+
+<time class="signoff" datetime="2006-09-29">
+  &mdash;Sep 29, 2006
+</time>
+</article>
+
+      <footer id="footer">
+        <a href="/" title="Home">Home</a> &bull;
+        <a href="/archive.html" title="Archived writing">Archive</a>
+      </footer>
+    </div>
+  </body>
+</html>

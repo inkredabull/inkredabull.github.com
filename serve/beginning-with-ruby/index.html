@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="en-us" http-equiv="Content-Language" />
+    <meta content="The online writing of Anthony Bull" name="description" />
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <title>Anthony Bull &mdash; Beginning With Ruby</title>
+  </head>
+  <body>
+    <header>
+      <h1 id="title">
+        The Bull Og
+      </h1>
+      <h2 id="subtitle">
+        Onine since 1994. Offline since 1976.
+      </h2>
+      <h3>
+        See also the <a href="/archive.html" title="Archive">archive</a>
+      </h3>
+    </header>
+    <div id="wrapper">
+      <h2 id="intro">An individual post follows.</h2>
+<article class="post">
+<p>I didn't really want to pay <a href="/?p=407" target="_new">$333/month</a> to hone my Python chops so I decided to get my hands dirty with some Ruby instead (on a side note, I am currently looking to recruit <a href="http://bit.ly/4bERSS" target="_new">Front-end Engineers</a> and a <a href="http://bit.ly/3mgFls" target="_new">Front-end Engineer manager</a> if you know of any...)</p>
+
+<p>I decided to formulate a different task for myself:</p>
+
+<p><em>TASK</em>: Given a set of albums in a 1.4.4-pl4 version of <a href="http://codex.gallery2.org/" target="_new">Gallery</a>, write a script that uploads them to Flickr and sets properties accordingly so that they appear in the correct chronological order.</p>
+
+<h3>Background</h3>
+
+<p>I've been using Gallery for a long time to curate my photos, long before Flickr came on the scene. I'm a big believer in YDYS (Your Data is Yours) and didn't like uploading my photos to big servers in the ether so I hosted my own photos with Gallery.</p>
+
+<p>Well, time marches on and when you manage your own photo gallery online then you have to manage the software that manages your photo gallery. I have to admit (and you can pretty much tell when it happened by the version number,) my gallery fell into disarray and I didn't tend to it as much as I should.</p>
+
+<p>Now that I don't have quite as much time for outside projects as I once did, I thought "it's time to upgrade to a service like Flickr and let them manage the infrastructure while I take care of capturing and sharing memories."</p>
+
+<p><em>DISCLAIMER</em>: I get the <a href="http://www.flickr.com/upgrade/" target="_new">Flickr Pro upgrade</a> for free because of <a href="http://www.yahoo.com">where I work.</a> It's probably necessary to have the Pro account before you attempt the uploads using the techniques that I'm eventually going to use.</p>
+
+<p>I'll have some time to get started this weekend, but here are some initial steps as to what I think I'll need to do to parse photo data out of the Gallery files.</p> 
+
+<div class="CodeRay">
+  <div class="code"><pre>=begin
+- Create a B-Tree (we'll need it for date-tracking as we process each of the photos)
+- Glob a list of photos.dat files recursively
+- Foreach photos.dat file...
+-       Open file
+-       Slurp file (can do in Ruby?)
+-       Parse syntax
+-       Foreach photo
+-               Find uploadDate
+-               Do lookup in B-Tree on uploadDate and/then...
+-               Stick Album Name and File Name in B-Tree for uploadDate
+-       Close file
+- Traverse the B-Tree and print out: &quot;Album Name, File Name&quot;
+=end</pre></div>
+</div>
+
+<time class="signoff" datetime="2009-11-20">
+  &mdash;Nov 20, 2009
+</time>
+</article>
+
+      <footer id="footer">
+        <a href="/" title="Home">Home</a> &bull;
+        <a href="/archive.html" title="Archived writing">Archive</a>
+      </footer>
+    </div>
+  </body>
+</html>

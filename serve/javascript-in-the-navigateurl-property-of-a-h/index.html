@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="en-us" http-equiv="Content-Language" />
+    <meta content="The online writing of Anthony Bull" name="description" />
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <title>Anthony Bull &mdash; JavaScript in the NavigateURL property of a hyperlink control</title>
+  </head>
+  <body>
+    <header>
+      <h1 id="title">
+        The Bull Og
+      </h1>
+      <h2 id="subtitle">
+        Onine since 1994. Offline since 1976.
+      </h2>
+      <h3>
+        See also the <a href="/archive.html" title="Archive">archive</a>
+      </h3>
+    </header>
+    <div id="wrapper">
+      <h2 id="intro">An individual post follows.</h2>
+<article class="post">
+<p>I was trying to figure out how to embed some JavaScript in a System.Web.UI.WebControls.HyperLink control when I came across <a href="http://www.experts-exchange.com/Programming/Programming_Languages/Dot_Net/ASP_DOT_NET/Q_21140530.html">this</a>.</p>
+
+<p>.....but the only problem was that I was passing parameters to the JavaScript function in question and the single quotes were getting all messed up.</p>
+
+<p>Finally, I just put a DIV tag with runat=server around a regular anchor tag (  ) and used logic in the code-behind to show/hide that.</p>
+
+<time class="signoff" datetime="2006-03-07">
+  &mdash;Mar 07, 2006
+</time>
+</article>
+
+      <footer id="footer">
+        <a href="/" title="Home">Home</a> &bull;
+        <a href="/archive.html" title="Archived writing">Archive</a>
+      </footer>
+    </div>
+  </body>
+</html>

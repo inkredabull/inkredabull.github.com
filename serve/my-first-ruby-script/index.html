@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="en-us" http-equiv="Content-Language" />
+    <meta content="The online writing of Anthony Bull" name="description" />
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <title>Anthony Bull &mdash; My First Ruby Script</title>
+  </head>
+  <body>
+    <header>
+      <h1 id="title">
+        The Bull Og
+      </h1>
+      <h2 id="subtitle">
+        Onine since 1994. Offline since 1976.
+      </h2>
+      <h3>
+        See also the <a href="/archive.html" title="Archive">archive</a>
+      </h3>
+    </header>
+    <div id="wrapper">
+      <h2 id="intro">An individual post follows.</h2>
+<article class="post">
+<p>This last weekend I was finally able to sit down and pound out <a href="http://github.com/inkredabull/gallery2flickr/blob/master/gallery2flickr.rb" target="_new">my first Ruby script.</a>  Now I can grab the 790 pics I have in my Gallery installation and thanks to the B-Tree, order them by the upload date.</p>
+
+<p>(There must be a better way to do the regexs in Ruby but I think it's not too bad for a first stab.)</p>
+
+<p>The next step is to make use of the Flickr API to upload all the pics and set info accordingly.</p>
+
+<p>What to do about tags?  In the next iteration, I think I'm going to put a "tags.txt" file in each Gallery album directory in order to ascribe at least a few tags to the photos as they're being uploaded.</p>
+
+<p>Just for fun, here's a taste of the Gallery metadata files (photos.dat) that serve as the input for parsing.  Good times.</p>
+<code>a:17:{i:0;O:9:"AlbumItem":19:{s:5:"image";O:5:"Image":12:{s:4:"name";s:8:"100_0559";s:4:"type";s:3:"jpg";
+s:5:"width";i:640;s:6:"height";i:480;s:11:"resizedName";
+s:14:"100_0559.sized";s:7:"thumb_x";N;s:7:"thumb_y";N;
+s:11:"thumb_width";N;s:12:"thumb_height";N;
+s:9:"raw_width";i:1200;s:10:"raw_height";i:900;
+s:7:"version";</code>
+
+<time class="signoff" datetime="2009-11-25">
+  &mdash;Nov 25, 2009
+</time>
+</article>
+
+      <footer id="footer">
+        <a href="/" title="Home">Home</a> &bull;
+        <a href="/archive.html" title="Archived writing">Archive</a>
+      </footer>
+    </div>
+  </body>
+</html>

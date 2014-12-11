@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="en-us" http-equiv="Content-Language" />
+    <meta content="The online writing of Anthony Bull" name="description" />
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <title>Anthony Bull &mdash; Transactions in Catalyst</title>
+  </head>
+  <body>
+    <header>
+      <h1 id="title">
+        The Bull Og
+      </h1>
+      <h2 id="subtitle">
+        Onine since 1994. Offline since 1976.
+      </h2>
+      <h3>
+        See also the <a href="/archive.html" title="Archive">archive</a>
+      </h3>
+    </header>
+    <div id="wrapper">
+      <h2 id="intro">An individual post follows.</h2>
+<article class="post">
+<p>I searched around couldn't find anything definitive, but I put the following together based on what I could find.</p>
+
+<p>Before you start making changes to your model(s,) use a line like this:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre>$c-&gt;model('MyAppDB')-&gt;storage-&gt;txn_commit;</pre></div>
+</div>
+
+
+<p>... and add make sure this is in the "end" method of the module where you're doing the changes:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre>sub end : Private {
+     my ( $self, $c ) = @_;
+
+     if ( scalar @{ $c-&gt;error } ) {
+         $c-&gt;log-&gt;error(@{$c-&gt;error}[0]);
+         $c-&gt;stash-&gt;{errors}   = $c-&gt;error;
+         $c-&gt;stash-&gt;{template} = 'error.tt';
+         $c-&gt;forward('MyApp::View::TT');
+         $c-&gt;error(0);
+         $c-&gt;model('MyAppDB')-&gt;storage-&gt;txn_rollback;
+     } else {
+         $c-&gt;model('MyAppDB')-&gt;storage-&gt;txn_commit;
+     }
+
+     # wrap up...
+}</pre></div>
+</div>
+
+<time class="signoff" datetime="2008-02-01">
+  &mdash;Feb 01, 2008
+</time>
+</article>
+
+      <footer id="footer">
+        <a href="/" title="Home">Home</a> &bull;
+        <a href="/archive.html" title="Archived writing">Archive</a>
+      </footer>
+    </div>
+  </body>
+</html>

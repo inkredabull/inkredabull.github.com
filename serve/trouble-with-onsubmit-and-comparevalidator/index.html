@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="en-us" http-equiv="Content-Language" />
+    <meta content="The online writing of Anthony Bull" name="description" />
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <title>Anthony Bull &mdash; Trouble with OnSubmit() and CompareValidator</title>
+  </head>
+  <body>
+    <header>
+      <h1 id="title">
+        The Bull Og
+      </h1>
+      <h2 id="subtitle">
+        Onine since 1994. Offline since 1976.
+      </h2>
+      <h3>
+        See also the <a href="/archive.html" title="Archive">archive</a>
+      </h3>
+    </header>
+    <div id="wrapper">
+      <h2 id="intro">An individual post follows.</h2>
+<article class="post">
+To do some validation on two dates (an end date and a start date where the end date shouldn't be earlier than the start date,) I tried making use of the CompareValidator.  After much frustration, I finally got rid of it and coded the JavaScript for the validation myself.
+
+I was making use of a CompareValidator control in a webform along with a hyperlink-as-submit-button ala <a href="http://www.javascript-coder.com/javascript-form/javascript-form-submit.phtml">this tutorial.</a>  When I tested the hyperlink, I got this:
+
+<div class="CodeRay">
+  <div class="code"><pre>'event' is null or not an object</pre></div>
+</div>
+
+
+When I tried this...
+
+<div class="CodeRay">
+  <div class="code"><pre>alert(document.theForm.onsubmit);</pre></div>
+</div>
+
+
+I got this in the popup...
+
+<div class="CodeRay">
+  <div class="code"><pre>function anonymous() {
+          if(!ValdiatorOnSubmit()) 
+               return false;
+  }</pre></div>
+</div>
+
+
+...which seemed to indicate that the onsubmit event is hooked into the .NET web validation javascript via a pointer somewhere.  What to do?  How about including an invisbile submit button to force the form submission (thank you <a href="http://www.w3schools.com/htmldom/dom_obj_submit.asp">W3Schools</a>!) ala:
+
+<div class="CodeRay">
+  <div class="code"><pre>document.getElementById('InivisibleSubmitButton').click();</pre></div>
+</div>
+  
+
+The problem I ran into was that I couldn't test whether the technique returned true (validation OK) or false (try again) which was necessary before submitting the values to commit to the database.  
+
+In the end, I wound up including my own JavaScript to validate the dates.  No post backs, just simple validation client-side.
+
+<time class="signoff" datetime="2006-11-30">
+  &mdash;Nov 30, 2006
+</time>
+</article>
+
+      <footer id="footer">
+        <a href="/" title="Home">Home</a> &bull;
+        <a href="/archive.html" title="Archived writing">Archive</a>
+      </footer>
+    </div>
+  </body>
+</html>
