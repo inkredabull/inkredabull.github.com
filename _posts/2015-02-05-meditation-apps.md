@@ -7,9 +7,7 @@ categories: [meditation]
 ---
 ## Meditation Apps
 
-A few months ago, I decided to investigate which smartphone apps there might be to support a meditation practice.
-
-Almost immediately, I found [calm.com](http://www.calm.com).  There are two versions: free and paid (subscription.)  
+A few months ago, I decided to investigate which smartphone apps there might be to support a meditation practice.  Almost immediately, I found [calm.com](http://www.calm.com).  There are two versions: free and paid (subscription.)  
 
 The free has a basic timer and a limited feature set of paid version which provdies access to a number of
 different background scenes, background white noise, and an assortment of guided meditations.
